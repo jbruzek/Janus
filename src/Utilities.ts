@@ -1,5 +1,5 @@
 // Number of columns in a valid transaction record
-const NUMBER_OF_COLUMNS = 9
+const NUMBER_OF_COLUMNS = 9;
 
 /**
  * https://gist.github.com/stekhn/a12ed417e91f90ecec14bcfa4c2ae16a
@@ -20,6 +20,10 @@ function weightedMean_(arrValues: Array<number>, arrWeights: Array<number>): num
   return result[0] / result[1];
 }
 
+/**
+ * Check a range to make sure it meets the criteria to be processed as a list of transactions
+ * @param range a range of (hopefully, maybe) properly formatted transaction rows
+ */
 function checkValidRange_(range: SheetRange) {
   if (range[0].length != NUMBER_OF_COLUMNS) {
     throw "Incorrect number of columns"
