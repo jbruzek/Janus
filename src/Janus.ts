@@ -33,6 +33,8 @@ class Janus {
       if (!(transaction.symbol in index)) {
         index[transaction.symbol] = {
           cost: 0,
+          units: 0,
+          currentPrice: 0,
           transactions: []
         }
       }
@@ -40,7 +42,12 @@ class Janus {
       if (transaction.type == "Buy") {
         index[transaction.symbol].cost += (transaction.price * transaction.units)
       }
-      index[transaction.symbol].transactions.push(transaction)
+      if (transaction.type == "Fee") {
+        index[transaction.symbol].units -= transaction.units
+      } else {
+        index[transaction.symbol].units += transaction.units
+      }
+      index[transaction.symbol].currentPrice = transaction.currentPrice
     }
 
     //calculate returns
@@ -48,7 +55,8 @@ class Janus {
     let weights = []
     for (const key in index) { 
       if (Object.prototype.hasOwnProperty.call(index, key)) {
-        returns.push(Janus.findReturnForOneSymbol(index[key].transactions))
+        let ret = ((index[key].units * index[key].currentPrice) - index[key].cost) / index[key].cost;
+        returns.push(ret)
         weights.push(index[key].cost)
       }
     }

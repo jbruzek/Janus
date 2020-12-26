@@ -29,6 +29,7 @@ function TOTALRETURNRATE(range: SheetRange) {
   
   /**********************/
   const result = [];
+  result.push(["Account/Fund", "Return no Div", "Return w Div"])
   for (const property in byAccount) {
     let content = [];
     content[0] = property;
@@ -40,10 +41,11 @@ function TOTALRETURNRATE(range: SheetRange) {
     let content = [];
     content[0] = property;
     content[1] = Janus.findReturnByEach(bySymbol[property])
-    content[2] = Janus.findReturnForOneSymbol(bySymbol[property])
+    content[2] = Janus.findReturn(bySymbol[property])
+    // content[2] = Janus.findReturnForOneSymbol(bySymbol[property])
     result.push(content)
   }
-  
+
   return result;
   //return JSON.stringify(bySymbol);
   //return findReturn_(transactions)

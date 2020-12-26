@@ -1,5 +1,6 @@
 // Number of columns in a valid transaction record
 const NUMBER_OF_COLUMNS = 9;
+const API_KEY = 'A0XXGU7Y9HMUIINI'
 
 /**
  * https://gist.github.com/stekhn/a12ed417e91f90ecec14bcfa4c2ae16a
