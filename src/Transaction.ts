@@ -1,9 +1,9 @@
 /**
  * Object representing a transaction
  */
-class Transaction {
+export default class Transaction {
   account: string;
-  date: number;
+  date: Date;
   type: Type;
   symbol: string;
   units: number;
@@ -22,6 +22,11 @@ class Transaction {
     this.fee = row[6];
     this.split = row[7];
     this.currentPrice = row[8];
+  }
+
+  /** Is this a purchase transaction? i.e. did we gain units of a fund with this transaction */
+  isPurchase(): boolean {
+    return this.type == "Buy" || this.type == "Reinvestment"
   }
 
   toRow(): SheetRow {
