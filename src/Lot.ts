@@ -1,5 +1,5 @@
 import Transaction from './Transaction';
-import { oneYearAgo_ } from './Utilities'
+import { oneYearAgo } from './Utilities'
 
 export default class Lot {
   symbol: string;
@@ -21,7 +21,7 @@ export default class Lot {
     this.value = this.units * transaction.currentPrice
     this.totalGain = (this.units * transaction.currentPrice) - this.cost
 
-    if (this.purchaseDate > oneYearAgo_()) {
+    if (this.purchaseDate > oneYearAgo()) {
       this.shortTermGain = this.totalGain
       this.longTermGain = 0
     } else {

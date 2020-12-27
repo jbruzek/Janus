@@ -1,6 +1,6 @@
 import Lot from "./Lot";
 import Transaction from "./Transaction"
-import { weightedMean_ } from "./Utilities";
+import { weightedMean } from "./Utilities";
 
 /**
  * Find the rate of return from a set of transactions
@@ -20,7 +20,7 @@ export function findReturnByEach(transactions: Array<Transaction>) : number {
     weights.push(transaction.units / totalUnits)
   }
   
-  return weightedMean_(returns, weights)
+  return weightedMean(returns, weights)
 }
 
 /**
@@ -64,7 +64,7 @@ export function findReturn(transactions: Array<Transaction>) : number {
     }
   }
 
-  return weightedMean_(returns, weights);
+  return weightedMean(returns, weights);
 }
 
 /**

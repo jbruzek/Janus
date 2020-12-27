@@ -1,11 +1,11 @@
 // Number of columns in a valid transaction record
 const NUMBER_OF_COLUMNS = 9;
-let oneYearAgo: Date
+let oneYearAgo_: Date
 
 /**
  * https://gist.github.com/stekhn/a12ed417e91f90ecec14bcfa4c2ae16a
  */
-export function weightedMean_(arrValues: Array<number>, arrWeights: Array<number>): number {
+export function weightedMean(arrValues: Array<number>, arrWeights: Array<number>): number {
 
   var result = arrValues.map(function (value, i) {
 
@@ -24,18 +24,18 @@ export function weightedMean_(arrValues: Array<number>, arrWeights: Array<number
 /**
  * Get a date that is exactly one year ago
  */
-export function oneYearAgo_() : Date {
-  if (oneYearAgo == undefined) {
-    oneYearAgo = new Date(new Date().setFullYear(new Date().getFullYear() - 1))
+export function oneYearAgo() : Date {
+  if (oneYearAgo_ == undefined) {
+    oneYearAgo_ = new Date(new Date().setFullYear(new Date().getFullYear() - 1))
   }
-  return oneYearAgo
+  return oneYearAgo_
 }
 
 /**
  * Check a range to make sure it meets the criteria to be processed as a list of transactions
  * @param range a range of (hopefully, maybe) properly formatted transaction rows
  */
-export function checkValidRange_(range: SheetRange) {
+export function checkValidRange(range: SheetRange) {
   if (range[0].length != NUMBER_OF_COLUMNS) {
     throw "Incorrect number of columns"
   }

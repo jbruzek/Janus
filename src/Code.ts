@@ -1,6 +1,6 @@
 import { findReturn, findReturnByEach, getLots } from "./Janus";
 import Transaction from "./Transaction";
-import { checkValidRange_ } from "./Utilities";
+import { checkValidRange } from "./Utilities";
 
 /**
  * Get the total return for the input range of transactions
@@ -10,9 +10,9 @@ import { checkValidRange_ } from "./Utilities";
  * @customfunction
  */
 function TOTALRETURNRATE(range: SheetRange) {
-  checkValidRange_(range)
+  checkValidRange(range)
   
-  const transactions = [];
+  const transactions: Array<Transaction> = [];
   
   const byAccount = {};
   const bySymbol = {};
@@ -32,17 +32,17 @@ function TOTALRETURNRATE(range: SheetRange) {
   }
   
   /**********************/
-  const result = [];
+  const result: SheetRange = [];
   result.push(["Account/Fund", "Return no Div", "Return w Div"])
   for (const property in byAccount) {
-    let content = [];
+    let content: SheetRow = [];
     content[0] = property;
     content[1] = findReturnByEach(byAccount[property])
     content[2] = findReturn(byAccount[property])
     result.push(content)
   }
   for (const property in bySymbol) {
-    let content = [];
+    let content: SheetRow = [];
     content[0] = property;
     content[1] = findReturnByEach(bySymbol[property])
     content[2] = findReturn(bySymbol[property])
@@ -64,13 +64,13 @@ function TOTALRETURNRATE(range: SheetRange) {
  * @customfunction
  */
 function COSTBASISLOTS(range: SheetRange) {
-  checkValidRange_(range)
+  checkValidRange(range)
 
   const transactions: Array<Transaction> = [];
   for (const row of range) {
     transactions.push(new Transaction(row))
   }
-  const result = [];
+  const result: SheetRange = [];
   result.push(["Symbol", "Purchase Date", "Units", "Price", "Cost", "Value", "Short Term Gains", "Long Term Gains", "Total Gain"])
 
   const lots = getLots(transactions)
