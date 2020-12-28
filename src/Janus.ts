@@ -1,6 +1,32 @@
 import Lot from "./Lot";
+import SortedArray from "./SortedArray";
 import Transaction from "./Transaction"
 import { weightedMean } from "./Utilities";
+
+class Janus {
+  private lots: SortedArray<Lot>
+
+  constructor() {
+    this.lots = new SortedArray<Lot>((a, b) => a.compareTo(b))
+  }
+
+  processTransaction(transaction: Transaction) {
+    /*
+      if the transaction creates a new lot (buy, reinvest)
+        create the new lot. Add to lot list (in sorted order)
+      if fee
+        process fee over previous lots using correct cost basis method
+      if sell
+        process sell over previous lots using correct cost basis method
+        if sell splits a lot
+          create new lot and insert into lot list at correct point
+      if conversion
+        update previous lots to handle conversion
+      if split
+        update previous lots to handle split
+    */
+  }
+}
 
 /**
  * Find the rate of return from a set of transactions

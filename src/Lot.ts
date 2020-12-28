@@ -33,4 +33,14 @@ export default class Lot {
   toRow() : SheetRow {
     return [this.symbol, this.purchaseDate, this.units, this.price, this.cost, this.value, this.shortTermGain, this.longTermGain, this.totalGain]
   }
+
+  compareTo(other: Lot) {
+    if (this.purchaseDate < other.purchaseDate) {
+      return -1
+    }
+    if (this.purchaseDate > other.purchaseDate) {
+      return 1
+    }
+    return 0
+  }
 }

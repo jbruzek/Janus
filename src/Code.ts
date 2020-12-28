@@ -1,4 +1,5 @@
 import { findReturn, findReturnByEach, getLots } from "./Janus";
+import SortedArray from "./SortedArray";
 import Transaction from "./Transaction";
 import { checkValidRange } from "./Utilities";
 
@@ -89,4 +90,26 @@ function COSTBASISLOTS(range: SheetRange) {
       return lot.toRow()
     }))
     .concat([["", "", "", "", totalCost, totalValue, totalShort, totalLong, totalGain]])
+}
+
+/**
+ * 
+ * @param range 
+ * @customfunction
+ */
+function SORTEDARRAYTEST(range: SheetRange) {
+  const data = new SortedArray<number>((a: number, b: number) => {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  })
+  for (const row of range) {
+    data.insert(row[0])
+  }
+
+  return data.data
 }
