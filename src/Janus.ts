@@ -13,7 +13,7 @@ export function findReturnByEach(transactions: Array<Transaction>) : number {
   
   const totalUnits = transactions.map(v => v.units).reduce((sum, current) => sum + current, 0)
   for (const transaction of transactions) {
-    if (transaction.type == "Dividend") {
+    if (transaction.type == "Dividend" || transaction.type == "Conversion") {
       continue;
     }
     returns.push(((transaction.currentPrice - transaction.price) * transaction.units) / (transaction.price * transaction.units))
@@ -31,10 +31,12 @@ export function findReturnByEach(transactions: Array<Transaction>) : number {
 export function findReturn(transactions: Array<Transaction>) : number {
   //construct the index
   let index = {}
-  for (const transaction of transactions) {
+  let conversionCost = 0
+
+  for (const trans of transactions) {
     //if this symbol's record doesn't exist yet, build it
-    if (!(transaction.symbol in index)) {
-      index[transaction.symbol] = {
+    if (!(trans.symbol in index)) {
+      index[trans.symbol] = {
         cost: 0,
         units: 0,
         currentPrice: 0,
@@ -42,15 +44,24 @@ export function findReturn(transactions: Array<Transaction>) : number {
       }
     }
     //add this transaction data
-    if (transaction.type == "Buy") {
-      index[transaction.symbol].cost += (transaction.price * transaction.units)
+    if (trans.type == "Buy") {
+      index[trans.symbol].cost += (trans.price * trans.units)
     }
-    if (transaction.type == "Fee") {
-      index[transaction.symbol].units -= transaction.units
+    if (trans.type == "Fee") {
+      index[trans.symbol].units -= trans.units
     } else {
-      index[transaction.symbol].units += transaction.units
+      index[trans.symbol].units += trans.units
     }
-    index[transaction.symbol].currentPrice = transaction.currentPrice
+    index[trans.symbol].currentPrice = trans.currentPrice
+
+    //handle a share conversion
+    if (trans.isConverstion() && conversionCost === 0) {
+      conversionCost = index[trans.symbol].cost
+      delete index[trans.symbol]
+    } else if (trans.isConverstion() && conversionCost != 0) {
+      index[trans.symbol].cost = conversionCost
+      conversionCost = 0
+    }
   }
 
   //calculate returns

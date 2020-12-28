@@ -29,6 +29,10 @@ export default class Transaction {
     return this.type == "Buy" || this.type == "Reinvestment"
   }
 
+  isConverstion(): boolean {
+    return this.type == "Conversion"
+  }
+
   toRow(): SheetRow {
     return [this.account, this.date, this.type, this.symbol, this.units, this.price, this.fee, this.split, this.currentPrice]; 
   }

@@ -79,14 +79,14 @@ function COSTBASISLOTS(range: SheetRange) {
   let totalShort = 0
   let totalLong = 0
   let totalGain = 0
-  lots.forEach(lot => {
-    totalCost += lot.cost
-    totalValue += lot.value
-    totalShort += lot.shortTermGain
-    totalLong += lot.longTermGain
-    totalGain += lot.totalGain
-  })
   return result
-    .concat(lots.map(lot => lot.toRow()))
+    .concat(lots.map(lot => {
+      totalCost += lot.cost
+      totalValue += lot.value
+      totalShort += lot.shortTermGain
+      totalLong += lot.longTermGain
+      totalGain += lot.totalGain
+      return lot.toRow()
+    }))
     .concat([["", "", "", "", totalCost, totalValue, totalShort, totalLong, totalGain]])
 }
