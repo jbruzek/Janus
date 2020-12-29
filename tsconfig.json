@@ -2,8 +2,7 @@
   "compilerOptions": {
     "normalTypeScriptOptions": "here",
     "target": "es5",
-    "lib": ["es6"],
-    "exclude": "**/node_modules/**",
+    "lib": ["es6"]
   },
   "typedocOptions": {
     "exclude": "**/node_modules/**",

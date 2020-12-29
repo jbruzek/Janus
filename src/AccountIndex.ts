@@ -14,13 +14,27 @@ interface SymbolIndex {
 }
 
 /**
+ * Enum representing the cost basis method used to execute a sale of funds.
+ * https://investor.vanguard.com/taxes/cost-basis/methods
+ */
+enum CostBasisMethod {
+  AVERAGE_COST,
+  FIFO,
+  HIFO
+}
+
+/**
  * Index of funds in an account with summations and lot tracking
  */
 export default class AccountIndex {
   private index: Map<string, SymbolIndex>
+  private saleMethod: CostBasisMethod
+  private feeMethod: CostBasisMethod
 
   constructor() {
     this.index = new Map<string, SymbolIndex>()
+    this.saleMethod = CostBasisMethod.AVERAGE_COST
+    this.feeMethod = CostBasisMethod.AVERAGE_COST
   }
 
   /**

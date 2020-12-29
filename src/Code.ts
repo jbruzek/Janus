@@ -1,6 +1,5 @@
 import Janus from "./Janus";
 import Lot from "./Lot";
-import SortedArray from "./SortedArray";
 import Transaction from "./Transaction";
 import { checkValidRange, weightedMean } from "./Utilities";
 
