@@ -83,6 +83,10 @@ export default class AccountIndex {
     return (totalValue - totalCost) / totalCost
   }
 
+  /**
+   * Execute a function once per SymbolIndex item in the AccountIndex
+   * @param op The function to execute for each entry in the AccountIndex
+   */
   forEach(op: (item: SymbolIndex) => void) {
     this.index.forEach(op)
   }
