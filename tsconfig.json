@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "normalTypeScriptOptions": "here",
+    "target": "es5",
+    "lib": ["es6"],
+    "exclude": "**/node_modules/**",
+  },
+  "typedocOptions": {
+    "exclude": "**/node_modules/**",
+    "entryPoints": ["src/"],
+    "out": "docs",
+    "theme": "./node_modules/typedoc-neo-theme/bin/default",
+    "excludePrivate": true,
+    "excludeProtected": true,
+  }
+}
