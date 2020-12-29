@@ -15,8 +15,9 @@ export default class SortedArray<T> {
    * https://stackoverflow.com/a/33697671/3682482
    * 
    * @param item the item to be inserted
+   * @returns this instance for method chaining
    */
-  insert(item: T) {
+  insert(item: T) : SortedArray<T> {
     // get the index we need to insert the item at
     var min = 0;
     var max = this.data.length;
@@ -32,8 +33,16 @@ export default class SortedArray<T> {
 
     // insert the item
     this.data.splice(index, 0, item);
+
+    return this
   }
 
+  /**
+   * Get an element from the sorted array
+   * @param index The position in the array to retrieve
+   * @returns the value at that index in the array
+   * @throws exceptions for invalid indices
+   */
   get(index: number): T {
     return this.data[index]
   }

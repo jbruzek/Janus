@@ -4,6 +4,9 @@ let oneYearAgo_: Date
 
 /**
  * https://gist.github.com/stekhn/a12ed417e91f90ecec14bcfa4c2ae16a
+ * @param arrValues an array of values to average
+ * @param arrWeights an array of weights to assign to the values. Must match arrValues in length
+ * @returns the average of the values with the assigned weights
  */
 export function weightedMean(arrValues: Array<number>, arrWeights: Array<number>): number {
 
@@ -23,6 +26,7 @@ export function weightedMean(arrValues: Array<number>, arrWeights: Array<number>
 
 /**
  * Get a date that is exactly one year ago
+ * @returns a date one year ago
  */
 export function oneYearAgo() : Date {
   if (oneYearAgo_ == undefined) {
@@ -34,6 +38,7 @@ export function oneYearAgo() : Date {
 /**
  * Check a range to make sure it meets the criteria to be processed as a list of transactions
  * @param range a range of (hopefully, maybe) properly formatted transaction rows
+ * @throws exceptions if the range is invalid
  */
 export function checkValidRange(range: SheetRange) {
   if (range[0].length != NUMBER_OF_COLUMNS) {

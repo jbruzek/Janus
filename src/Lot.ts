@@ -1,11 +1,16 @@
 import Transaction from './Transaction';
 import { oneYearAgo } from './Utilities'
 
+/**
+ * Class representing one tax lot. 
+ * https://www.investopedia.com/terms/t/taxlotaccounting.asp
+ */
 export default class Lot {
   symbol: string;
   purchaseDate: Date;
   units: number;
   price: number;
+  currentPrice: number;
   cost: number;
   value: number;
   shortTermGain: number;
@@ -17,9 +22,10 @@ export default class Lot {
     this.purchaseDate = transaction.date
     this.units = transaction.units
     this.price = transaction.price
+    this.currentPrice = transaction.currentPrice
     this.cost = this.units * this.price
-    this.value = this.units * transaction.currentPrice
-    this.totalGain = (this.units * transaction.currentPrice) - this.cost
+    this.value = this.units * this.currentPrice
+    this.totalGain = (this.units * this.currentPrice) - this.cost
 
     if (this.purchaseDate > oneYearAgo()) {
       this.shortTermGain = this.totalGain
@@ -30,10 +36,17 @@ export default class Lot {
     }
   }
 
+  /**
+   * Convert this Lot into a SheetRow representing the Lot
+   */
   toRow() : SheetRow {
-    return [this.symbol, this.purchaseDate, this.units, this.price, this.cost, this.value, this.shortTermGain, this.longTermGain, this.totalGain]
+    return [this.symbol, this.purchaseDate, this.units, this.price, this.cost, this.currentPrice, this.value, this.shortTermGain, this.longTermGain, this.totalGain]
   }
 
+  /**
+   * Compare Lots by their purchase date. Returns negative if this Lot is older than the compared Lot
+   * @param other a Lot to be compared to
+   */
   compareTo(other: Lot) {
     if (this.purchaseDate < other.purchaseDate) {
       return -1
