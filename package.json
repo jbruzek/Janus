@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "doc": "npx typedoc && git add docs/"
+  },
+  "pre-commit": [
+    "doc"
+  ],
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "typedoc": "^0.20.1",
+    "typedoc-neo-theme": "^1.0.10",
+    "typescript": "^4.1.3"
+  }
+}
