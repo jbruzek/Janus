@@ -1,5 +1,4 @@
 import Janus from "./Janus";
-import Lot from "./Lot";
 import Transaction from "./Transaction";
 import { SheetRange, SheetRow } from "./Types";
 import { checkValidRange, weightedMean } from "./Utilities";
@@ -59,38 +58,49 @@ function TOTALRETURNRATE(range: SheetRange) {
 }
 
 /**
- * Get cost basis lots from transactions
+ * Get tax lots from transactions
  * 
  * @param range range of transactions
- * @returns a table of cost basis lots with summations
+ * @returns a table of tax lots with summations
  * @customfunction
  */
-function COSTBASISLOTS(range: SheetRange) {
+function TAXLOTS(range: SheetRange) {
   checkValidRange(range)
-
-  const transactions: Array<Transaction> = [];
+  
+  const byAccount = {};
   for (const row of range) {
-    transactions.push(new Transaction(row))
+    const transaction = new Transaction(row)
+    
+    if (!byAccount.hasOwnProperty(transaction.account)) {
+      byAccount[transaction.account] = [];
+    }
+    
+    byAccount[transaction.account].push(transaction);
   }
-  const result: SheetRange = [];
-  result.push(["Symbol", "Purchase Date", "Units", "Price", "Cost", "Current Price", "Value", "Short Term Gains", "Long Term Gains", "Total Gain"])
 
-  const lots = getLots(transactions)
-  let totalCost = 0
-  let totalValue = 0
-  let totalShort = 0
-  let totalLong = 0
-  let totalGain = 0
+  let result: SheetRange = [];
+  for (const property in byAccount) {
+    const janus = new Janus().processTransactions(byAccount[property])
+    result.push([property])
+    result.push(["Symbol", "Purchase Date", "Units", "Price", "Cost", "Current Price", "Value", "Short Term Gains", "Long Term Gains", "Total Gain"])
+    const lots = janus.getTaxLots()
+    let totalCost = 0
+    let totalValue = 0
+    let totalShort = 0
+    let totalLong = 0
+    let totalGain = 0
+    result = result
+      .concat(lots.map(lot => {
+        totalCost += lot.cost
+        totalValue += lot.value
+        totalShort += lot.shortTermGain
+        totalLong += lot.longTermGain
+        totalGain += lot.totalGain
+        return lot.toRow()
+      }))
+      .concat([["", "", "", "", totalCost, "", totalValue, totalShort, totalLong, totalGain]])
+  }
   return result
-    .concat(lots.map(lot => {
-      totalCost += lot.cost
-      totalValue += lot.value
-      totalShort += lot.shortTermGain
-      totalLong += lot.longTermGain
-      totalGain += lot.totalGain
-      return lot.toRow()
-    }))
-    .concat([["", "", "", "", totalCost, "", totalValue, totalShort, totalLong, totalGain]])
 }
 
 /***************************************************************************************************
@@ -180,16 +190,4 @@ export function findReturnForOneSymbol(transactions: Array<Transaction>) : numbe
   }
 
   return ((units * currentPrice) - cost) / cost
-}
-
-/**
- * Get cost basis lot details for a list of transactions
- * 
- * @param transactions Array of Transactions
- * @returns an array of tax lots
- */
-export function getLots(transactions: Array<Transaction>) : Array<Lot> {
-  return transactions
-    .filter(transaction => transaction.isPurchase())
-    .map(transaction => new Lot(transaction))
 }

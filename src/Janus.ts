@@ -1,8 +1,9 @@
 import AccountIndex from "./AccountIndex";
+import Lot from "./Lot";
 import Transaction from "./Transaction"
 
 /**
- * Janus is a class that contains functions for processing and analyzing transactions
+ * Janus is a class that contains functions for processing and analyzing transactions.
  * Each instance represents one account. 
  */
 export default class Janus {
@@ -23,6 +24,18 @@ export default class Janus {
   }
 
   /**
+   * Get the tax lots for this account
+   * @returns an array of Lots, in sorted order
+   */
+  getTaxLots() : Array<Lot> {
+    let lots: Array<Lot> = []
+    this.index.forEach(item => {
+      lots = lots.concat(item.lots.data)
+    })
+    return lots.sort((a, b) => a.compareTo(b))
+  }
+
+  /**
    * Process a list of transactions, indexing and storing the data
    * @param transactions a list of transactions all in the same account
    * @returns this instance for method chaining
@@ -30,12 +43,7 @@ export default class Janus {
    */
   processTransactions(transactions: Array<Transaction>) : Janus {
     transactions.forEach(trans => {
-      if (this.account == "") {
-        this.account = trans.account
-      }
-      if (this.account != trans.account) {
-        throw "All transactions must be from the same account"
-      }
+      this.checkTransactionAccount(trans)
       this.processTransaction(trans)
     })
     return this
@@ -61,5 +69,19 @@ export default class Janus {
       //split previous lots
     }
     return this
+  }
+
+  /**
+   * Make sure that a transaction comes from the correct account
+   * @param trans a Transaction to check
+   * @throws exception if this transaction is from a different account
+   */
+  private checkTransactionAccount(trans: Transaction) {
+    if (this.account == "") {
+      this.account = trans.account
+    }
+    if (this.account != trans.account) {
+      throw "All transactions must be from the same account"
+    }
   }
 }

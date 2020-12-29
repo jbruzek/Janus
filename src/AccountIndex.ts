@@ -83,6 +83,10 @@ export default class AccountIndex {
     return (totalValue - totalCost) / totalCost
   }
 
+  forEach(op: (item: SymbolIndex) => void) {
+    this.index.forEach(op)
+  }
+
   /**
    * Get this element in the index, or create it if it does not exist yet
    * @param symbol lookup value
