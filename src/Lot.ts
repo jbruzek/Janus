@@ -1,4 +1,5 @@
 import Transaction from './Transaction';
+import { SheetRow } from './Types';
 import { oneYearAgo } from './Utilities'
 
 /**

@@ -1,3 +1,5 @@
+import { SheetRow, Type } from "./Types";
+
 /**
  * Object representing a transaction
  */

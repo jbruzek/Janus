@@ -1,3 +1,3 @@
-type SheetRow = Array<any>
-type SheetRange = Array<SheetRow>
-type Type = "Buy" | "Dividend" | "Reinvestment" | "Conversion" | "Sell" | "Fee" | "Split"
+export type SheetRow = Array<any>
+export type SheetRange = Array<SheetRow>
+export type Type = "Buy" | "Dividend" | "Reinvestment" | "Conversion" | "Sell" | "Fee" | "Split"

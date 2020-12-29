@@ -1,3 +1,5 @@
+import { SheetRange } from "./Types";
+
 // Number of columns in a valid transaction record
 const NUMBER_OF_COLUMNS = 9;
 let oneYearAgo_: Date

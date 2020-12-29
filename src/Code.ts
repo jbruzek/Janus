@@ -1,6 +1,7 @@
 import Janus from "./Janus";
 import Lot from "./Lot";
 import Transaction from "./Transaction";
+import { SheetRange, SheetRow } from "./Types";
 import { checkValidRange, weightedMean } from "./Utilities";
 
 /**
