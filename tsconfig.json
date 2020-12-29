@@ -12,5 +12,6 @@
     "theme": "./node_modules/typedoc-neo-theme/bin/default",
     "excludePrivate": true,
     "excludeProtected": true,
+    "name": "Janus",
   }
 }
