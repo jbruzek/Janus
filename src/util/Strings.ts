@@ -14,6 +14,7 @@ const TAX_LOT_HEADERS = ["Symbol", "Purchase Date", "Units", "Price", "Cost", "C
 const TRANSACTION_NOT_PURCHASE = "Transaction must be a purchase"
 const TRANSACTION_NOT_DIVIDEND = "Transaction must be a dividend"
 const TRANSACTION_NOT_FEE = "Transaction must be a fee"
+const TRANSACTION_NOT_CONVERSION = "Transaction must be a conversion"
 const CONVERSION_OUT_OF_ORDER = "Must process outgoing fund conversion before incoming conversion"
 
 function NOT_ENOUGH_DIVIDEND_INCOME(date: Date, dividendIncome: number, amount: number) { return "Transaction on date " + date + " is reinvesting more money than available. Dividend income: $" + dividendIncome + ". Reinvestment cost: $" + amount }

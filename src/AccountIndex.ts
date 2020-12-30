@@ -102,9 +102,13 @@ export default class AccountIndex {
    * incoming couterpart transaction. After an outgoing conversion transaction has been processed, 
    * an incoming conversion transaction (one with positive units value) can be processed.
    * @param transaction transaction to process. Must be a conversion
+   * @throws exception if transaction is not a conversion.
    * @throws exception if conversion is happening out of order.
    */
   processConversion(transaction: Transaction) {
+    if (transaction.type != "Conversion") {
+      throw TRANSACTION_NOT_CONVERSION
+    }
     if (this.conversionRollover.cost == 0) {
       //outgoing conversion
       if (transaction.units > 0) {
