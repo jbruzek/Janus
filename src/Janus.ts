@@ -57,6 +57,8 @@ export default class Janus {
   private processTransaction(transaction: Transaction) : Janus {
     if (transaction.isPurchase()) {
       this.index.assessPurchase(transaction)
+    } else if (transaction.type == "Dividend") {
+      this.index.assessDividend(transaction)
     } else if (transaction.type == "Fee") {
       this.index.assessFee(transaction)
     } else if (transaction.type == "Sell") {

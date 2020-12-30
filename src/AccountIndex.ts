@@ -28,11 +28,13 @@ enum CostBasisMethod {
  */
 export default class AccountIndex {
   private index: Map<string, SymbolIndex>
+  private dividendIncome: number
   private saleMethod: CostBasisMethod
   private feeMethod: CostBasisMethod
 
   constructor() {
     this.index = new Map<string, SymbolIndex>()
+    this.dividendIncome = 0
     this.saleMethod = CostBasisMethod.AVERAGE_COST
     this.feeMethod = CostBasisMethod.AVERAGE_COST
   }
@@ -41,18 +43,38 @@ export default class AccountIndex {
    * Index and store the data for a purchase transaction
    * @param transaction transaction to process. Must be a purchase
    * @throws exception if transaction is not a purchase
+   * @throws exception if a reinvestment is being attempted when there is no dividend income to reinvest
    */
   assessPurchase(transaction: Transaction) {
     if (!transaction.isPurchase()) {
       throw "Transaction must be a purchase"
     }
-    let bucket = this.getOrCreate(transaction.symbol)
+    const bucket = this.getOrCreate(transaction.symbol)
     if (transaction.type == "Buy") {
       bucket.cost += (transaction.price * transaction.units)
+    }
+    if (transaction.type == "Reinvestment") {
+      const amount = transaction.price * transaction.units
+      if (amount > this.dividendIncome) {
+        throw "Transaction on date " + transaction.date + " is reinvesting more money than available. Dividend income: $" + this.dividendIncome + ". Reinvestment cost: $" + amount
+      }
+      this.dividendIncome -= amount
     }
     bucket.units += transaction.units
     bucket.currentPrice = transaction.currentPrice
     bucket.lots.insert(new Lot(transaction))
+  }
+
+  /**
+   * Index and store the data for a Dividend transaction
+   * @param transaction transaction to process. Must be a Dividend
+   * @throws exception if transaction is not a dividend
+   */
+  assessDividend(transaction: Transaction) {
+    if (transaction.type != "Dividend") {
+      throw "Transation must be a Dividend"
+    }
+    this.dividendIncome += transaction.units * transaction.price
   }
 
   /**
@@ -64,7 +86,7 @@ export default class AccountIndex {
     if (transaction.type != "Fee") {
       throw "Transaction must be a Fee"
     }
-    let bucket = this.getOrCreate(transaction.symbol)
+    const bucket = this.getOrCreate(transaction.symbol)
     bucket.units -= transaction.units
     bucket.currentPrice = transaction.currentPrice
   }
@@ -78,7 +100,7 @@ export default class AccountIndex {
     let totalValue = 0
     this.index.forEach((value, key, map) => {
       totalCost += value.cost
-      totalValue += (value.units * value.currentPrice)
+      totalValue += (value.units * value.currentPrice) + this.dividendIncome
     })
     return (totalValue - totalCost) / totalCost
   }

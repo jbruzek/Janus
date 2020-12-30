@@ -126,6 +126,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#assessdividend" class="tsd-kind-icon">assessDividend</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#assessfee" class="tsd-kind-icon">assessFee</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#assesspurchase" class="tsd-kind-icon">assessPurchase</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#foreach" class="tsd-kind-icon">forEach</a></li>
@@ -147,7 +148,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:32</li>
+									<li>Defined in AccountIndex.ts:33</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="accountindex.default.html" class="tsd-signature-type">default</a></h4>
@@ -158,6 +159,41 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="assessdividend" class="tsd-anchor"></a>
+					<h3>assess<wbr>Dividend</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">assess<wbr>Dividend<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in AccountIndex.ts:73</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+								<div class="lead">
+									<p>Index and store the data for a Dividend transaction</p>
+								</div>
+								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>throws</dt>
+									<dd><p>exception if transaction is not a dividend</p>
+								</dd></dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
+									<div class="tsd-comment tsd-typography tsd-comment-text">
+										<p>transaction to process. Must be a Dividend</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="assessfee" class="tsd-anchor"></a>
 					<h3>assess<wbr>Fee</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -167,7 +203,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:63</li>
+									<li>Defined in AccountIndex.ts:85</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -202,7 +238,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:45</li>
+									<li>Defined in AccountIndex.ts:48</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -212,6 +248,8 @@
 								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
 								<dl class="tsd-comment-tags"><dt>throws</dt>
 									<dd><p>exception if transaction is not a purchase</p>
+									</dd><dt>throws</dt>
+									<dd><p>exception if a reinvestment is being attempted when there is no dividend income to reinvest</p>
 								</dd></dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -237,7 +275,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:90</li>
+									<li>Defined in AccountIndex.ts:112</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -286,7 +324,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:76</li>
+									<li>Defined in AccountIndex.ts:98</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -312,6 +350,9 @@
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="accountindex.default.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="accountindex.default.html#assessdividend" class="tsd-kind-icon">assess<wbr>Dividend</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="accountindex.default.html#assessfee" class="tsd-kind-icon">assess<wbr>Fee</a>
