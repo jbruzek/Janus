@@ -47,7 +47,7 @@ export default class AccountIndex {
    */
   assessPurchase(transaction: Transaction) {
     if (!transaction.isPurchase()) {
-      throw "Transaction must be a purchase"
+      throw TRANSACTION_NOT_PURCHASE
     }
     const bucket = this.getOrCreate(transaction.symbol)
     if (transaction.type == "Buy") {
@@ -56,7 +56,7 @@ export default class AccountIndex {
     if (transaction.type == "Reinvestment") {
       const amount = transaction.price * transaction.units
       if (amount > this.dividendIncome) {
-        throw "Transaction on date " + transaction.date + " is reinvesting more money than available. Dividend income: $" + this.dividendIncome + ". Reinvestment cost: $" + amount
+        throw NOT_ENOUGH_DIVIDEND_INCOME(transaction.date, this.dividendIncome, amount)
       }
       this.dividendIncome -= amount
     }
@@ -72,7 +72,7 @@ export default class AccountIndex {
    */
   assessDividend(transaction: Transaction) {
     if (transaction.type != "Dividend") {
-      throw "Transation must be a Dividend"
+      throw TRANSACTION_NOT_DIVIDEND
     }
     this.dividendIncome += transaction.units * transaction.price
   }
@@ -84,7 +84,7 @@ export default class AccountIndex {
    */
   assessFee(transaction: Transaction) {
     if (transaction.type != "Fee") {
-      throw "Transaction must be a Fee"
+      throw TRANSACTION_NOT_FEE
     }
     const bucket = this.getOrCreate(transaction.symbol)
     bucket.units -= transaction.units

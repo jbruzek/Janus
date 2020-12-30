@@ -83,7 +83,7 @@ export default class Janus {
       this.account = trans.account
     }
     if (this.account != trans.account) {
-      throw "All transactions must be from the same account"
+      throw TRANSACTION_FROM_WRONG_ACCOUNT(trans.date, trans.account, this.account)
     }
   }
 }

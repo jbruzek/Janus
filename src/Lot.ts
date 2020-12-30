@@ -1,6 +1,6 @@
 import Transaction from './Transaction';
-import { SheetRow } from './Types';
-import { oneYearAgo } from './Utilities'
+import { SheetRow } from './util/Types';
+import { oneYearAgo } from './util/Utilities'
 
 /**
  * Class representing one tax lot. 

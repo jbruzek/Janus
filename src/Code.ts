@@ -1,7 +1,7 @@
 import Janus from "./Janus";
 import Transaction from "./Transaction";
-import { SheetRange, SheetRow } from "./Types";
-import { checkValidRange, weightedMean } from "./Utilities";
+import { SheetRange, SheetRow } from "./util/Types";
+import { checkValidRange, weightedMean } from "./util/Utilities";
 
 /**
  * Get the total return for the input range of transactions
@@ -34,7 +34,7 @@ function TOTALRETURNRATE(range: SheetRange) {
   
   /**********************/
   const result: SheetRange = [];
-  result.push(["Account/Fund", "Return w Div", "Janus Return"])
+  result.push(TOTAL_RETURN_HEADERS)
   for (const property in byAccount) {
     let content: SheetRow = [];
     content[0] = property;
@@ -82,7 +82,7 @@ function TAXLOTS(range: SheetRange) {
   for (const property in byAccount) {
     const janus = new Janus().processTransactions(byAccount[property])
     result.push([property])
-    result.push(["Symbol", "Purchase Date", "Units", "Price", "Cost", "Current Price", "Value", "Short Term Gains", "Long Term Gains", "Total Gain"])
+    result.push(TAX_LOT_HEADERS)
     const lots = janus.getTaxLots()
     let totalCost = 0
     let totalValue = 0

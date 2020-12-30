@@ -1,4 +1,4 @@
-import { SheetRow, Type } from "./Types";
+import { SheetRow, Type } from "./util/Types";
 
 /**
  * Object representing a transaction

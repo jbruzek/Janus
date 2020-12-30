@@ -44,6 +44,6 @@ export function oneYearAgo() : Date {
  */
 export function checkValidRange(range: SheetRange) {
   if (range[0].length != NUMBER_OF_COLUMNS) {
-    throw "Incorrect number of columns"
+    throw INCORRECT_NUMBER_OF_COLUMNS(NUMBER_OF_COLUMNS)
   }
 }
