@@ -7,7 +7,7 @@ import Transaction from "./Transaction"
  * Each instance represents one account. 
  */
 export default class Janus {
-  private index: AccountIndex
+  readonly index: AccountIndex
   private account: string
 
   constructor() {
@@ -56,17 +56,17 @@ export default class Janus {
    */
   private processTransaction(transaction: Transaction) : Janus {
     if (transaction.isPurchase()) {
-      this.index.assessPurchase(transaction)
+      this.index.processPurchase(transaction)
     } else if (transaction.type == "Dividend") {
-      this.index.assessDividend(transaction)
+      this.index.processDividend(transaction)
     } else if (transaction.type == "Fee") {
-      this.index.assessFee(transaction)
+      this.index.processFee(transaction)
     } else if (transaction.type == "Sell") {
       //process sell over previous lots using correct cost basis method
       //if sell splits a lot
       //  create new lot and insert into lot list at correct point
     } else if (transaction.type == "Conversion") {
-      //process the conversion over previous lots
+      this.index.processConversion(transaction)
     } else if (transaction.type == "Split") {
       //split previous lots
     }

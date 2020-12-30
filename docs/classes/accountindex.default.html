@@ -126,11 +126,12 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#assessdividend" class="tsd-kind-icon">assessDividend</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#assessfee" class="tsd-kind-icon">assessFee</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#assesspurchase" class="tsd-kind-icon">assessPurchase</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#foreach" class="tsd-kind-icon">forEach</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#getreturn" class="tsd-kind-icon">getReturn</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#processconversion" class="tsd-kind-icon">processConversion</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#processdividend" class="tsd-kind-icon">processDividend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#processfee" class="tsd-kind-icon">processFee</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="accountindex.default.html#processpurchase" class="tsd-kind-icon">processPurchase</a></li>
 							</ul>
 						</section>
 					</div>
@@ -148,7 +149,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:33</li>
+									<li>Defined in AccountIndex.ts:34</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="accountindex.default.html" class="tsd-signature-type">default</a></h4>
@@ -159,113 +160,6 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="assessdividend" class="tsd-anchor"></a>
-					<h3>assess<wbr>Dividend</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">assess<wbr>Dividend<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in AccountIndex.ts:73</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Index and store the data for a Dividend transaction</p>
-								</div>
-								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
-								<dl class="tsd-comment-tags"><dt>throws</dt>
-									<dd><p>exception if transaction is not a dividend</p>
-								</dd></dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
-									<div class="tsd-comment tsd-typography tsd-comment-text">
-										<p>transaction to process. Must be a Dividend</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="assessfee" class="tsd-anchor"></a>
-					<h3>assess<wbr>Fee</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">assess<wbr>Fee<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in AccountIndex.ts:85</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Index and store the data for a Fee transaction</p>
-								</div>
-								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
-								<dl class="tsd-comment-tags"><dt>throws</dt>
-									<dd><p>exception if transaction is not a fee</p>
-								</dd></dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
-									<div class="tsd-comment tsd-typography tsd-comment-text">
-										<p>transaction to process. Must be a Fee</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="assesspurchase" class="tsd-anchor"></a>
-					<h3>assess<wbr>Purchase</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">assess<wbr>Purchase<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in AccountIndex.ts:48</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
-								<div class="lead">
-									<p>Index and store the data for a purchase transaction</p>
-								</div>
-								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
-								<dl class="tsd-comment-tags"><dt>throws</dt>
-									<dd><p>exception if transaction is not a purchase</p>
-									</dd><dt>throws</dt>
-									<dd><p>exception if a reinvestment is being attempted when there is no dividend income to reinvest</p>
-								</dd></dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
-									<div class="tsd-comment tsd-typography tsd-comment-text">
-										<p>transaction to process. Must be a purchase</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="foreach" class="tsd-anchor"></a>
 					<h3>for<wbr>Each</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -275,7 +169,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:114</li>
+									<li>Defined in AccountIndex.ts:156</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -324,7 +218,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AccountIndex.ts:100</li>
+									<li>Defined in AccountIndex.ts:142</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
@@ -334,6 +228,152 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>the total return as a percent</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="processconversion" class="tsd-anchor"></a>
+					<h3>process<wbr>Conversion</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Conversion<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in AccountIndex.ts:107</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+								<div class="lead">
+									<p>Index and store the data for a Conversion transaction (outgoing or incoming).
+										Conversions take place over two different transactions, one outgoing and one incoming.
+										An outgoing conversion transaction has a negative units value, and must be processed before it&#39;s
+										incoming couterpart transaction. After an outgoing conversion transaction has been processed,
+									an incoming conversion transaction (one with positive units value) can be processed.</p>
+								</div>
+								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>throws</dt>
+									<dd><p>exception if conversion is happening out of order.</p>
+								</dd></dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
+									<div class="tsd-comment tsd-typography tsd-comment-text">
+										<p>transaction to process. Must be a conversion</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="processdividend" class="tsd-anchor"></a>
+					<h3>process<wbr>Dividend</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Dividend<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in AccountIndex.ts:75</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+								<div class="lead">
+									<p>Index and store the data for a Dividend transaction</p>
+								</div>
+								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>throws</dt>
+									<dd><p>exception if transaction is not a dividend</p>
+								</dd></dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
+									<div class="tsd-comment tsd-typography tsd-comment-text">
+										<p>transaction to process. Must be a Dividend</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="processfee" class="tsd-anchor"></a>
+					<h3>process<wbr>Fee</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Fee<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in AccountIndex.ts:87</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+								<div class="lead">
+									<p>Index and store the data for a Fee transaction</p>
+								</div>
+								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>throws</dt>
+									<dd><p>exception if transaction is not a fee</p>
+								</dd></dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
+									<div class="tsd-comment tsd-typography tsd-comment-text">
+										<p>transaction to process. Must be a Fee</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="processpurchase" class="tsd-anchor"></a>
+					<h3>process<wbr>Purchase</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Purchase<span class="tsd-signature-symbol">(</span>transaction<span class="tsd-signature-symbol">: </span><a href="transaction.default.html" class="tsd-signature-type">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in AccountIndex.ts:50</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+								<div class="lead">
+									<p>Index and store the data for a purchase transaction</p>
+								</div>
+								</div><div class="tsd-comment tsd-typography tsd-comment-tags">
+								<dl class="tsd-comment-tags"><dt>throws</dt>
+									<dd><p>exception if transaction is not a purchase</p>
+									</dd><dt>throws</dt>
+									<dd><p>exception if a reinvestment is being attempted when there is no dividend income to reinvest</p>
+								</dd></dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>transaction: <a href="transaction.default.html" class="tsd-signature-type">default</a></h5>
+									<div class="tsd-comment tsd-typography tsd-comment-text">
+										<p>transaction to process. Must be a purchase</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -352,19 +392,22 @@
 								<a href="accountindex.default.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="accountindex.default.html#assessdividend" class="tsd-kind-icon">assess<wbr>Dividend</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="accountindex.default.html#assessfee" class="tsd-kind-icon">assess<wbr>Fee</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="accountindex.default.html#assesspurchase" class="tsd-kind-icon">assess<wbr>Purchase</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="accountindex.default.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="accountindex.default.html#getreturn" class="tsd-kind-icon">get<wbr>Return</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="accountindex.default.html#processconversion" class="tsd-kind-icon">process<wbr>Conversion</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="accountindex.default.html#processdividend" class="tsd-kind-icon">process<wbr>Dividend</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="accountindex.default.html#processfee" class="tsd-kind-icon">process<wbr>Fee</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="accountindex.default.html#processpurchase" class="tsd-kind-icon">process<wbr>Purchase</a>
 							</li>
 						</ul>
 					</li>

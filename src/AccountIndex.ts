@@ -31,12 +31,14 @@ export default class AccountIndex {
   private dividendIncome: number
   private saleMethod: CostBasisMethod
   private feeMethod: CostBasisMethod
+  private conversionRollover: SymbolIndex
 
   constructor() {
     this.index = new Map<string, SymbolIndex>()
     this.dividendIncome = 0
     this.saleMethod = CostBasisMethod.AVERAGE_COST
     this.feeMethod = CostBasisMethod.AVERAGE_COST
+    this.conversionRollover = this.symbolIndexFactory("Rollover")
   }
 
   /**
@@ -45,7 +47,7 @@ export default class AccountIndex {
    * @throws exception if transaction is not a purchase
    * @throws exception if a reinvestment is being attempted when there is no dividend income to reinvest
    */
-  assessPurchase(transaction: Transaction) {
+  processPurchase(transaction: Transaction) {
     if (!transaction.isPurchase()) {
       throw TRANSACTION_NOT_PURCHASE
     }
@@ -70,7 +72,7 @@ export default class AccountIndex {
    * @param transaction transaction to process. Must be a Dividend
    * @throws exception if transaction is not a dividend
    */
-  assessDividend(transaction: Transaction) {
+  processDividend(transaction: Transaction) {
     if (transaction.type != "Dividend") {
       throw TRANSACTION_NOT_DIVIDEND
     }
@@ -82,7 +84,7 @@ export default class AccountIndex {
    * @param transaction transaction to process. Must be a Fee
    * @throws exception if transaction is not a fee
    */
-  assessFee(transaction: Transaction) {
+  processFee(transaction: Transaction) {
     if (transaction.type != "Fee") {
       throw TRANSACTION_NOT_FEE
     }
@@ -91,6 +93,46 @@ export default class AccountIndex {
     bucket.units -= transaction.units
     bucket.currentPrice = transaction.currentPrice
     //TODO: transact over previous lots using feeMethod to determine sold units
+  }
+
+  /**
+   * Index and store the data for a Conversion transaction (outgoing or incoming).
+   * Conversions take place over two different transactions, one outgoing and one incoming.
+   * An outgoing conversion transaction has a negative units value, and must be processed before it's 
+   * incoming couterpart transaction. After an outgoing conversion transaction has been processed, 
+   * an incoming conversion transaction (one with positive units value) can be processed.
+   * @param transaction transaction to process. Must be a conversion
+   * @throws exception if conversion is happening out of order.
+   */
+  processConversion(transaction: Transaction) {
+    if (this.conversionRollover.cost == 0) {
+      //outgoing conversion
+      if (transaction.units > 0) {
+        throw CONVERSION_OUT_OF_ORDER
+      }
+      const bucket = this.getOrCreate(transaction.symbol)
+      this.conversionRollover = bucket
+      this.index.delete(transaction.symbol)
+    } else {
+      if (transaction.units < 0) {
+        throw CONVERSION_OUT_OF_ORDER
+      }
+      //incoming conversion
+      const bucket = this.getOrCreate(transaction.symbol)
+      bucket.cost = this.conversionRollover.cost
+      bucket.units = transaction.units
+      bucket.currentPrice = transaction.currentPrice
+      const ratio = transaction.units / this.conversionRollover.units
+      this.conversionRollover.lots.data.forEach(lot => {
+        //update the tax lots to have the correct units and cost as the new fund
+        bucket.lots.insert(
+          new Lot(
+            new Transaction([transaction.account, lot.purchaseDate, "Buy", transaction.symbol, lot.units * ratio, lot.price / ratio, 0, 1, transaction.currentPrice])
+          )
+        )
+      })
+      this.conversionRollover = this.symbolIndexFactory("Rollover")
+    }
   }
 
   /**

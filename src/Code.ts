@@ -103,6 +103,31 @@ function TAXLOTS(range: SheetRange) {
   return result
 }
 
+function PRINTBUCKETS(range: SheetRange) {
+  checkValidRange(range)
+  
+  const byAccount = {};
+  for (const row of range) {
+    const transaction = new Transaction(row)
+    
+    if (!byAccount.hasOwnProperty(transaction.account)) {
+      byAccount[transaction.account] = [];
+    }
+    
+    byAccount[transaction.account].push(transaction);
+  }
+
+  let result: SheetRange = [];
+  for (const property in byAccount) {
+    const janus = new Janus().processTransactions(byAccount[property])
+    result.push([property])
+    janus.index.forEach((index => {
+      result.push([JSON.stringify(index)])
+    }))
+  }
+  return result
+}
+
 /***************************************************************************************************
  * Functions that I made before I started getting into the Janus architecture
  ***************************************************************************************************/
