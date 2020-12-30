@@ -86,9 +86,11 @@ export default class AccountIndex {
     if (transaction.type != "Fee") {
       throw TRANSACTION_NOT_FEE
     }
+    //TODO: if dividend income exists to cover this fee, take from there, else...
     const bucket = this.getOrCreate(transaction.symbol)
     bucket.units -= transaction.units
     bucket.currentPrice = transaction.currentPrice
+    //TODO: transact over previous lots using feeMethod to determine sold units
   }
 
   /**
@@ -97,10 +99,10 @@ export default class AccountIndex {
    */
   getReturn(): number {
     let totalCost = 0
-    let totalValue = 0
+    let totalValue = this.dividendIncome
     this.index.forEach((value, key, map) => {
       totalCost += value.cost
-      totalValue += (value.units * value.currentPrice) + this.dividendIncome
+      totalValue += (value.units * value.currentPrice)
     })
     return (totalValue - totalCost) / totalCost
   }
