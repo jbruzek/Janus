@@ -55,20 +55,26 @@ export default class Janus {
    * @returns this instance for method chaining
    */
   private processTransaction(transaction: Transaction) : Janus {
-    if (transaction.isPurchase()) {
-      this.index.processPurchase(transaction)
-    } else if (transaction.type == "Dividend") {
-      this.index.processDividend(transaction)
-    } else if (transaction.type == "Fee") {
-      this.index.processFee(transaction)
-    } else if (transaction.type == "Sell") {
-      //process sell over previous lots using correct cost basis method
-      //if sell splits a lot
-      //  create new lot and insert into lot list at correct point
-    } else if (transaction.type == "Conversion") {
-      this.index.processConversion(transaction)
-    } else if (transaction.type == "Split") {
-      //split previous lots
+    switch (transaction.type) {
+      case "Buy":
+      case "Reinvestment":
+        this.index.processPurchase(transaction)
+        break
+      case "Dividend":
+        this.index.processDividend(transaction)
+        break
+      case "Fee":
+        this.index.processFee(transaction)
+        break
+      case "Conversion":
+        this.index.processConversion(transaction)
+        break
+      case "Sell":
+        //process sell over previous lots using correct cost basis method
+        //if sell splits a lot
+        //  create new lot and insert into lot list at correct point
+      case "Split":
+      default:
     }
     return this
   }
