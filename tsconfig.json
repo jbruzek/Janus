@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "normalTypeScriptOptions": "here",
     "target": "es5",
     "lib": ["es6"]
   },
