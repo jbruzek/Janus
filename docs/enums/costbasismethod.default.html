@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Transaction | Janus</title>
+	<title>default | Janus</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,7 +55,10 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="transaction.html">Transaction</a>
+					<a href="../modules/costbasismethod.html">CostBasisMethod</a>
+				</li>
+				<li>
+					<a href="costbasismethod.default.html">default</a>
 				</li>
 			</ul>
 		</div>
@@ -70,46 +73,105 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="accountindex.html">AccountIndex</a>
+						<a href="../modules/accountindex.html">AccountIndex</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="code.html">Code</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="costbasismethod.html">CostBasisMethod</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="janus.html">Janus</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="lot.html">Lot</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="sortedarray.html">SortedArray</a>
+						<a href="../modules/code.html">Code</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="transaction.html">Transaction</a>
+						<a href="../modules/costbasismethod.html">CostBasisMethod</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="util_types.html">util/Types</a>
+						<a href="../modules/janus.html">Janus</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="util_utilities.html">util/Utilities</a>
+						<a href="../modules/lot.html">Lot</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/sortedarray.html">SortedArray</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/transaction.html">Transaction</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/util_types.html">util/Types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/util_utilities.html">util/Utilities</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 		<div class="col-7 offset-3 col-content">
-			<h1>Module Transaction</h1>
+			<h1>Enumeration default</h1>
+			<section class="tsd-panel tsd-comment"><div class="tsd-comment tsd-typography tsd-comment-shorttext">
+					<div class="lead">
+						<p>Enum representing the cost basis method used to execute a sale of funds.
+						<a href="https://investor.vanguard.com/taxes/cost-basis/methods">https://investor.vanguard.com/taxes/cost-basis/methods</a></p>
+					</div>
+			</div></section>
 			<section class="tsd-panel-group tsd-index-group">
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-module"><a href="../classes/transaction.default.html" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="costbasismethod.default.html#average_cost" class="tsd-kind-icon">AVERAGE_COST</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="costbasismethod.default.html#fifo" class="tsd-kind-icon">FIFO</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="costbasismethod.default.html#hifo" class="tsd-kind-icon">HIFO</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="average_cost" class="tsd-anchor"></a>
+					<h3>AVERAGE_<wbr>COST</h3>
+					<div class="tsd-signature tsd-kind-icon">AVERAGE_<wbr>COST<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in CostBasisMethod.ts:10</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Average Cost.
+							<a href="https://investor.vanguard.com/taxes/cost-basis/average-cost">https://investor.vanguard.com/taxes/cost-basis/average-cost</a></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="fifo" class="tsd-anchor"></a>
+					<h3>FIFO</h3>
+					<div class="tsd-signature tsd-kind-icon">FIFO<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in CostBasisMethod.ts:16</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>First In, First Out.
+							<a href="https://investor.vanguard.com/taxes/cost-basis/first-in-first-out">https://investor.vanguard.com/taxes/cost-basis/first-in-first-out</a></p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="hifo" class="tsd-anchor"></a>
+					<h3>HIFO</h3>
+					<div class="tsd-signature tsd-kind-icon">HIFO<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in CostBasisMethod.ts:22</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography tsd-comment-shorttext">
+						<div class="lead">
+							<p>Highest In, First Out.
+							<a href="https://investor.vanguard.com/taxes/cost-basis/highest-in-first-out">https://investor.vanguard.com/taxes/cost-basis/highest-in-first-out</a></p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -118,9 +180,24 @@
 		<div class="col-2 col-menu secondary-menu">
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module root">
-						<a href="../classes/transaction.default.html" class="tsd-kind-icon">default</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum tsd-parent-kind-module root">
+						<a href="costbasismethod.default.html" class="tsd-kind-icon">default</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="costbasismethod.default.html#average_cost" class="tsd-kind-icon">AVERAGE_<wbr>COST</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="costbasismethod.default.html#fifo" class="tsd-kind-icon">FIFO</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="costbasismethod.default.html#hifo" class="tsd-kind-icon">HIFO</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>

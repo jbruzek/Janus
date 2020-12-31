@@ -1,3 +1,4 @@
+import CostBasisMethod from "./CostBasisMethod";
 import Lot from "./Lot";
 import SortedArray from "./SortedArray";
 import Transaction from "./Transaction";
@@ -14,24 +15,15 @@ interface SymbolIndex {
 }
 
 /**
- * Enum representing the cost basis method used to execute a sale of funds.
- * https://investor.vanguard.com/taxes/cost-basis/methods
- */
-enum CostBasisMethod {
-  AVERAGE_COST,
-  FIFO,
-  HIFO
-}
-
-/**
  * Index of funds in an account with summations and lot tracking
  */
 export default class AccountIndex {
   private index: Map<string, SymbolIndex>
   private dividendIncome: number
-  private saleMethod: CostBasisMethod
-  private feeMethod: CostBasisMethod
   private conversionRollover: SymbolIndex
+
+  saleMethod: CostBasisMethod
+  feeMethod: CostBasisMethod
 
   constructor() {
     this.index = new Map<string, SymbolIndex>()
