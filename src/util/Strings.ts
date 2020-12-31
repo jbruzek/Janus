@@ -12,6 +12,7 @@ const TOTAL_RETURN_HEADERS = ["Account/Fund", "Return w Div", "Janus Return"]
 const TAX_LOT_HEADERS = ["Symbol", "Purchase Date", "Units", "Price", "Cost", "Current Price", "Value", "Short Term Gains", "Long Term Gains", "Total Gain"]
 
 const TRANSACTION_NOT_PURCHASE = "Transaction must be a purchase"
+const TRANSACTION_TO_LOT_NOT_PURCHASE = "Transaction must be a purchase in order to create a new Lot"
 const TRANSACTION_NOT_DIVIDEND = "Transaction must be a dividend"
 const TRANSACTION_NOT_FEE = "Transaction must be a fee"
 const TRANSACTION_NOT_CONVERSION = "Transaction must be a conversion"

@@ -18,12 +18,12 @@ export default class Lot {
   longTermGain: number;
   totalGain: number;
 
-  constructor(transaction: Transaction) {
-    this.symbol = transaction.symbol
-    this.purchaseDate = transaction.date
-    this.units = transaction.units
-    this.price = transaction.price
-    this.currentPrice = transaction.currentPrice
+  constructor(symbol: string, purchaseDate: Date, units: number, price: number, currentPrice: number) {
+    this.symbol = symbol
+    this.purchaseDate = purchaseDate
+    this.units = units
+    this.price = price
+    this.currentPrice = currentPrice
     this.cost = this.units * this.price
     this.value = this.units * this.currentPrice
     this.totalGain = (this.units * this.currentPrice) - this.cost
@@ -35,6 +35,18 @@ export default class Lot {
       this.shortTermGain = 0
       this.longTermGain = this.totalGain
     }
+  }
+
+  /**
+   * Get a Lot from a transaction. The transaction must be a purchase transaction in order to create a lot
+   * @param transaction The source of the lot data
+   * @throws exception if transaction is not a purchase
+   */
+  static fromTransaction(transaction: Transaction) : Lot {
+    if (!transaction.isPurchase()) {
+      throw TRANSACTION_TO_LOT_NOT_PURCHASE
+    }
+    return new Lot(transaction.symbol, transaction.date, transaction.units, transaction.price, transaction.currentPrice)
   }
 
   /**

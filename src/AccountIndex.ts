@@ -64,7 +64,7 @@ export default class AccountIndex {
     }
     bucket.units += transaction.units
     bucket.currentPrice = transaction.currentPrice
-    bucket.lots.insert(new Lot(transaction))
+    bucket.lots.insert(Lot.fromTransaction(transaction))
   }
 
   /**
@@ -130,9 +130,7 @@ export default class AccountIndex {
       this.conversionRollover.lots.data.forEach(lot => {
         //update the tax lots to have the correct units and cost as the new fund
         bucket.lots.insert(
-          new Lot(
-            new Transaction([transaction.account, lot.purchaseDate, "Buy", transaction.symbol, lot.units * ratio, lot.price / ratio, 0, 1, transaction.currentPrice])
-          )
+          new Lot(transaction.symbol, lot.purchaseDate, lot.units * ratio, lot.price / ratio, transaction.currentPrice)
         )
       })
       this.conversionRollover = this.symbolIndexFactory("Rollover")
